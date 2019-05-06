@@ -7,12 +7,29 @@ const generate = async request => {
   return new Response(qr_png, { headers })
 }
 
+const landing = `
+<h1>QR Generator</h1>
+<p>Click the below button to generate a new QR code. This will make a request to your serverless function.</p>
+<input type="text" id="text" value="https://workers.dev"></input>
+<button onclick='generate()'>Generate QR Code</button>
+<p>Check the "Network" tab in your browser's developer tools to see the generated QR code.</p>
+<script>
+  function generate() {
+    fetch(window.location.pathname, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: document.querySelector("#text").value })
+    })
+  }
+</script>
+`
+
 async function handleRequest(request) {
   let response
   if (request.method === 'POST') {
     response = await generate(request)
   } else {
-    response = new Response('Expected POST', { status: 500 })
+    response = new Response(landing, { headers: { 'Content-Type': 'text/html' } })
   }
   return response
 }
