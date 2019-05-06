@@ -1,0 +1,24 @@
+# Remember to also set the CLOUDFLARE_AUTH_KEY and CLOUDFLARE_AUTH_EMAIL auth keys:
+# The dotenv plugin will do this for you automatically if you place them in .env.
+
+service:
+  name: qr-generator
+
+provider:
+  name: cloudflare
+  config:
+    accountId: ${env:CLOUDFLARE_ACCOUNT_ID}
+    zoneId: ${env:CLOUDFLARE_ZONE_ID}
+
+plugins:
+  - serverless-cloudflare-workers
+  - serverless-dotenv-plugin
+
+functions:
+  worker:
+    name: qr-generator
+    script: index
+    webpack: true
+    events:
+      - http:
+          url: ${env:WORKER_ROUTE}
