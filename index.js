@@ -8,7 +8,7 @@ const generate = async request => {
 }
 
 const landing = `
-<h1>QR Generator</h1>
+<h1>QR Code Generator</h1>
 <p>Click the below button to generate a new QR code. This will make a request to your serverless function.</p>
 <input type="text" id="text" value="https://workers.dev"></input>
 <button onclick='generate()'>Generate QR Code</button>

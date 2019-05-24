@@ -1,13 +1,12 @@
 {
-  "name": "workers-slack-example",
+  "name": "workers-qr-code-generator",
+  "main": "index.js",
   "private": true,
-  "description": "Example project for Slack + Workers bot",
+  "description": "Example project for generating QR codes with Workers",
   "version": "0.1.0",
   "author": "Kristian Freeman <kristian@kristianfreeman.com>",
   "dependencies": {
     "qr-image": "^3.2.0",
-    "serverless-cloudflare-workers": "^1.2.0",
-    "serverless-dotenv-plugin": "^2.0.1",
-    "serverless-webpack": "^5.2.0"
+    "wrangler-js": "^0.1.9"
   }
 }
