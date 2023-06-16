@@ -1,6 +1,4 @@
 name = "qr-code-generator"
-type = "webpack"
-workers_dev = true
-route = ""
-account_id = "dc56444c4c955a1653106ccf997c1067"
-zone_id = ""
+main = "src/worker.js"
+compatibility_date = "2023-05-18"
+node_compat = true
