@@ -38,5 +38,5 @@ export default {
       response = new Response(landing, { headers: { 'Content-Type': 'text/html' } })
     }
     return response
-    }
+  }
 }
