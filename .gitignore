@@ -20,3 +20,5 @@ $RECYCLE.BIN/
 
 dist
 worker
+
+.wrangler

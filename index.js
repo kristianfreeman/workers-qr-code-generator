@@ -12,19 +12,22 @@ const landing = `
 <input type="text" id="text" value="https://workers.dev"></input>
 <button onclick='generate()'>Generate QR Code</button>
 <p>Check the "Network" tab in your browser's developer tools to see the generated QR code.</p>
-<div id="qr-code"></div>
+<img id="qr"></img>
 <script>
-  const generate = async () => {
-    const resp = await fetch(window.location.pathname, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+  function generate() {
+    fetch(window.location.pathname, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: document.querySelector("#text").value })
     })
-
-    const qr_code = document.querySelector("#qr-code");
-    const svg = await resp.text();
-    const dataUrl = "data:image/svg+xml;base64," + btoa(svg);
-    qr_code.innerHTML = "<img src='" + dataUrl + "' />";
+    .then(response => response.blob())
+    .then(blob => {
+      const reader = new FileReader();
+      reader.onloadend = function () {
+        document.querySelector("#qr").src = reader.result; // Update the image source with the newly generated QR code
+      }
+      reader.readAsDataURL(blob);
+    })
   }
 </script>
 `
